@@ -1,0 +1,19 @@
+<h1><%= @list.name %></h1>
+<%# <% @list.movies.each do |movie| %> %>
+  <%# <ul> %>
+    <%# <li> %>
+    <%# <%= movie.title %> %>
+    <%# <%= '⭐️' * movie.rating %> %>
+    <%# </li> %>
+  <%# </ul> %>
+<%# <% end %> %>
+
+<% @list.bookmarks.each do |b| %>
+  <ul>
+    <li>
+    <%= b.list_id %>
+    <%= b.movie_id %>
+    <%= b.movie.title %>
+    </li>
+  </ul>
+<% end %>
