@@ -1,0 +1,21 @@
+<div class="container">
+  <ul>
+  <% @lists.each do |movie| %>
+    <h2><%= "⭐️" * @movie.rating %></h2>
+    <%= image_tag @movie.poster_url, alt: "Movie Poster", size: 200 %>
+    <p><%= @movie.overview %></p>
+    <li><%= list.title%>, <%=  list.rating %></li>
+    <%= list.overview %>
+  <% end %>
+  </ul>
+</div>
+
+
+<% @list.movies.each do |movie| %>
+  <ul>
+    <li>
+    <%= movie.title %>
+    <%= '⭐️' * movie.rating %>
+    </li>
+  </ul>
+<% end %>
