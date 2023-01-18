@@ -1,18 +1,21 @@
 <div class="container">
   <h1><%= @list.name %></h1>
-  <% if @list.bookmark.present? %>
-    <% @list.bookmarks.each do |b| %>
-      <ul>
-        <li>
-        <%= b.list_id %>
-        <%= b.movie_id %>
-        <%= b.movie.title %>
-        </li>
-      </ul>
-    <% end %>
-  <% else %>
-  <%= link_to "Add a bookmark", new_bookmark_path %>
+  <%= "No movies have been added yet." if @list.movies.empty? %> <br>
+  <% @list.bookmarks.each do |b| %>
+    <ul>
+      <li>
+        <%= image_tag b.movie.poster_url, alt: "Movie Poster", size: 200 %>
+        <h4><%= b.movie.title %> ・ <%= Float(b.movie.rating) %> ⭐️</h4>
+        <p><%= b.movie.overview %></p>
+        <%# How to write comment in italics? %>
+        <p><%= b.comment%></p>
+        <p><%= link_to "Delete", list_path(@list.bookmarks), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{b.movie.title} from your #{@list.name} list?" }%></p>
+      </li>
+    </ul>
   <% end %>
+  <p><%= link_to "Add a movie", new_list_bookmark_path(@list) %></p>
+  <p><%= link_to "Delete this list", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?" } %></p>
 
-  <%= link_to "Back to my lists", lists_path %>
+  <p><%= link_to "My lists", lists_path %></p>
+  <p> <%= link_to "Create a list", new_list_path %></p>
 </div>
